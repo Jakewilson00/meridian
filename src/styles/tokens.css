@@ -1,0 +1,41 @@
+:root {
+  /* Backgrounds */
+  --bg-base: #141414;
+  --bg-main: #1a1a1a;
+  --bg-surface: #222222;
+  --bg-elevated: #2c2c2c;
+
+  /* Accent — forest green */
+  --accent: #2a8a56;
+  --accent-light: #5cc98a;
+  --accent-muted: #0d3320;
+
+  /* Text */
+  --text-primary: #f0ede8;
+  --text-secondary: #888888;
+  --text-muted: #555555;
+
+  /* Borders */
+  --border: #242424;
+  --border-card: #2c2c2c;
+
+  /* Tags */
+  --tag-green-bg: #0d3320;   --tag-green-text: #5cc98a;
+  --tag-amber-bg: #2d1f08;   --tag-amber-text: #d4941a;
+  --tag-blue-bg: #0c1e35;    --tag-blue-text: #5899d4;
+  --tag-red-bg: #2a0d0d;     --tag-red-text: #d46060;
+
+  /* Priority */
+  --priority-high: #d46060;
+  --priority-medium: #d4941a;
+  --priority-low: #5cc98a;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+}
