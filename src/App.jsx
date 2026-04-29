@@ -3,6 +3,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import ViewToggle from './components/shared/ViewToggle'
 import BoardView from './components/board/BoardView'
 import ListView from './components/list/ListView'
+import TimelineView from './components/timeline/TimelineView'
 import TaskModal from './components/modals/TaskModal'
 import MilestoneModal from './components/modals/MilestoneModal'
 import './App.css'
@@ -39,12 +40,7 @@ function MainContent() {
       ) : state.activeView === 'list' ? (
         <ListView />
       ) : (
-        <div className="placeholder-view">
-          <span className="placeholder-label">Timeline view — coming in Sprint 6</span>
-          <span className="placeholder-sub">
-            {state.tasks.length} task{state.tasks.length !== 1 ? 's' : ''} in total
-          </span>
-        </div>
+        <TimelineView />
       )}
     </div>
   )

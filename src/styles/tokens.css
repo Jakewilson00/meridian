@@ -39,3 +39,31 @@
   --radius-md: 9px;
   --radius-lg: 14px;
 }
+
+/* ── Light mode overrides ──────────────────────────────── */
+[data-theme="light"] {
+  --bg-base: #f2f1ee;
+  --bg-main: #fafaf8;
+  --bg-surface: #ededea;
+  --bg-elevated: #e4e3df;
+
+  --accent: #2a8a56;
+  --accent-light: #1a6b40;
+  --accent-muted: #cde9d8;
+
+  --text-primary: #141414;
+  --text-secondary: #555555;
+  --text-muted: #aaaaaa;
+
+  --border: #dddbd6;
+  --border-card: #d3d1cb;
+
+  --tag-green-bg: #cde9d8;   --tag-green-text: #1a6b40;
+  --tag-amber-bg: #fce5b8;   --tag-amber-text: #7a4d00;
+  --tag-blue-bg: #cfe3f6;    --tag-blue-text: #1050a0;
+  --tag-red-bg: #f6d4d4;     --tag-red-text: #911111;
+
+  --priority-high: #c04040;
+  --priority-medium: #b87800;
+  --priority-low: #1a8040;
+}

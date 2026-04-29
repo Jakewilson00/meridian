@@ -16,6 +16,7 @@ const initialState = {
   activeMilestoneId: null,
   activeView: 'board',
   modal: { type: null, mode: 'add', data: null },
+  theme: localStorage.getItem('meridian-theme') || 'dark',
 }
 
 function reducer(state, action) {
@@ -37,6 +38,11 @@ function reducer(state, action) {
 
     case 'CLOSE_MODAL':
       return { ...state, modal: { type: null, mode: 'add', data: null } }
+
+    case 'SET_THEME': {
+      localStorage.setItem('meridian-theme', action.theme)
+      return { ...state, theme: action.theme }
+    }
 
     // Task actions
     case 'CREATE_TASK': {
@@ -110,6 +116,11 @@ function reducer(state, action) {
 
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  // Apply theme to <html> on every change
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', state.theme)
+  }, [state.theme])
 
   useEffect(() => {
     seedIfEmpty().then(() => {
