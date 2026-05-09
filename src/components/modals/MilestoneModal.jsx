@@ -10,6 +10,7 @@ export default function MilestoneModal() {
   const { state, dispatch } = useApp()
   const { mode, data } = state.modal
   const isEdit = mode === 'edit'
+  const [closing, setClosing] = useState(false)
 
   const [form, setForm] = useState({
     title: '',
@@ -37,7 +38,14 @@ export default function MilestoneModal() {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
-  const close = () => dispatch({ type: 'CLOSE_MODAL' })
+  const close = () => setClosing(true)
+
+  const handleAnimationEnd = (e) => {
+    if (closing && e.animationName === 'popOut') {
+      dispatch({ type: 'CLOSE_MODAL' })
+    }
+  }
+
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
 
   // Compute completion % from tasks
@@ -70,8 +78,8 @@ export default function MilestoneModal() {
 
   return (
     <>
-      <div className="modal-overlay" onClick={close} />
-      <div className="milestone-modal">
+      <div className={`modal-overlay${closing ? ' modal-overlay--closing' : ''}`} onClick={close} />
+      <div className={`milestone-modal${closing ? ' milestone-modal--closing' : ''}`} onAnimationEnd={handleAnimationEnd}>
         <div className="drawer-header">
           <span className="drawer-title">{isEdit ? 'Edit Milestone' : 'New Milestone'}</span>
           <button className="drawer-close" onClick={close}><X size={18} /></button>

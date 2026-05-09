@@ -43,8 +43,8 @@ function TaskCard({ task, isOverlay = false }) {
 
   return (
     <div
-      className={`board-card${isOverlay ? ' board-card--overlay' : ''}`}
-      style={{ borderLeftColor: PRIORITY_BORDER[task.priority] ?? 'var(--border-card)' }}
+      className={`board-card${isOverlay ? ' board-card--overlay' : ''}${isOverdue ? ' board-card--overdue' : ''}`}
+      style={{ borderLeftColor: isOverdue ? '#e54d4d' : (PRIORITY_BORDER[task.priority] ?? 'var(--border-card)') }}
       onClick={isOverlay ? undefined : openEdit}
     >
       {task.tags?.length > 0 && (

@@ -1,17 +1,9 @@
-import { useState } from 'react'
 import { LayoutDashboard, ListTodo, GitBranch, BarChart2, Sun, Moon } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import NavItem from './NavItem'
 import ProjectList from './ProjectList'
 import MilestoneList from './MilestoneList'
 import './sidebar.css'
-
-const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: 'Dashboard' },
-  { icon: ListTodo,        label: 'Tasks' },
-  { icon: GitBranch,       label: 'Timeline' },
-  { icon: BarChart2,       label: 'Reports' },
-]
 
 function ThemeToggle() {
   const { state, dispatch } = useApp()
@@ -29,22 +21,45 @@ function ThemeToggle() {
 }
 
 export default function Sidebar() {
-  const [activeNav, setActiveNav] = useState('Tasks')
+  const { state, dispatch } = useApp()
+
+  const goTo = (page, view) => {
+    dispatch({ type: 'SET_PAGE', page })
+    if (view) dispatch({ type: 'SET_VIEW', view })
+  }
+
+  const isTasksActive = state.activePage === 'tasks' && state.activeView !== 'timeline'
+  const isTimelineActive = state.activePage === 'tasks' && state.activeView === 'timeline'
 
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">MERIDIAN</div>
 
       <nav className="sidebar-nav">
-        {NAV_ITEMS.map(({ icon, label }) => (
-          <NavItem
-            key={label}
-            icon={icon}
-            label={label}
-            active={activeNav === label}
-            onClick={() => setActiveNav(label)}
-          />
-        ))}
+        <NavItem
+          icon={LayoutDashboard}
+          label="Dashboard"
+          active={state.activePage === 'dashboard'}
+          onClick={() => goTo('dashboard')}
+        />
+        <NavItem
+          icon={ListTodo}
+          label="Tasks"
+          active={isTasksActive}
+          onClick={() => goTo('tasks', 'board')}
+        />
+        <NavItem
+          icon={GitBranch}
+          label="Timeline"
+          active={isTimelineActive}
+          onClick={() => goTo('tasks', 'timeline')}
+        />
+        <NavItem
+          icon={BarChart2}
+          label="Reports"
+          active={state.activePage === 'reports'}
+          onClick={() => goTo('reports')}
+        />
       </nav>
 
       <ProjectList />

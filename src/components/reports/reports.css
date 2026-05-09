@@ -1,0 +1,236 @@
+.reports {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100%;
+}
+
+/* ── Summary Strip ── */
+.rp-summary-strip {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.rp-kpi {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.rp-kpi-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.rp-kpi-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.rp-kpi-value--green { color: var(--accent-light); }
+.rp-kpi-value--red   { color: var(--priority-high); }
+
+.rp-kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+/* ── Grid ── */
+.rp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* ── Section Card ── */
+.rp-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.rp-section-title {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.rp-section-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Bar Row ── */
+.rp-bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 72px;
+  align-items: center;
+  gap: 12px;
+}
+
+.rp-bar-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.rp-bar-track {
+  height: 8px;
+  background: var(--bg-elevated);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.rp-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  min-width: 2px;
+}
+
+.rp-bar-count {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rp-bar-pct {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ── Milestone rows ── */
+.rp-milestone-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 44px;
+  align-items: center;
+  gap: 12px;
+}
+
+.rp-milestone-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rp-milestone-name {
+  font-size: 13px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-milestone-tally {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Project Table ── */
+.rp-project-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rp-project-table-head {
+  display: grid;
+  grid-template-columns: 1fr 52px 52px 64px 120px;
+  gap: 8px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+.rp-project-table-row {
+  display: grid;
+  grid-template-columns: 1fr 52px 52px 64px 120px;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  align-items: center;
+}
+
+.rp-project-table-row:last-child {
+  border-bottom: none;
+}
+
+.rp-project-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.rp-project-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-inline-bar {
+  height: 5px;
+  background: var(--bg-elevated);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.rp-inline-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  opacity: 0.8;
+  transition: width 0.5s ease;
+}
+
+.rp-inline-pct {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .rp-grid {
+    grid-template-columns: 1fr;
+  }
+}

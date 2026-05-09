@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, Check, X } from 'lucide-react'
+import { Plus, Check, X, FolderOpen } from 'lucide-react'
 import { nanoid } from 'nanoid'
 import { useApp } from '../../context/AppContext'
 
@@ -51,7 +51,13 @@ export default function ProjectList() {
       ))}
 
       {state.projects.length === 0 && !adding && (
-        <p className="project-empty">No projects yet</p>
+        <div className="projects-empty-state">
+          <FolderOpen size={28} className="projects-empty-icon" />
+          <span className="projects-empty-label">No projects yet</span>
+          <button className="projects-empty-cta" onClick={() => setAdding(true)}>
+            Create your first project
+          </button>
+        </div>
       )}
 
       {adding && (

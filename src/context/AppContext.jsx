@@ -14,6 +14,7 @@ const initialState = {
   tasks: [],
   activeProjectId: null,
   activeMilestoneId: null,
+  activePage: 'dashboard',
   activeView: 'board',
   modal: { type: null, mode: 'add', data: null },
   theme: localStorage.getItem('meridian-theme') || 'dark',
@@ -29,6 +30,9 @@ function reducer(state, action) {
 
     case 'SET_ACTIVE_MILESTONE':
       return { ...state, activeMilestoneId: action.id }
+
+    case 'SET_PAGE':
+      return { ...state, activePage: action.page }
 
     case 'SET_VIEW':
       return { ...state, activeView: action.view }

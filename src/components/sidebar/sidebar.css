@@ -155,10 +155,71 @@
 }
 
 .project-empty {
-  padding: 6px 20px;
+  padding: 6px 20px 2px;
   font-size: 12px;
   color: var(--text-muted);
   font-style: italic;
+  margin: 0;
+}
+
+.projects-empty-state {
+  padding: 12px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.projects-empty-icon {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.projects-empty-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.projects-empty-cta {
+  background: none;
+  border: 1px dashed var(--border-card);
+  border-radius: var(--radius-sm);
+  color: var(--accent-light);
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  width: 100%;
+  text-align: center;
+}
+
+.projects-empty-cta:hover {
+  background: var(--accent-muted);
+  border-color: var(--accent);
+}
+
+.milestone-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.milestone-empty-cta {
+  background: none;
+  border: none;
+  color: var(--accent-light);
+  font-size: 12px;
+  font-family: var(--font-body);
+  padding: 4px 20px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.15s;
+}
+
+.milestone-empty-cta:hover {
+  opacity: 0.75;
 }
 
 /* Inline add form */

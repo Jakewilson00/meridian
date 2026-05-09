@@ -4,6 +4,18 @@ import { nanoid } from 'nanoid'
 import { useApp } from '../../context/AppContext'
 import './modal.css'
 
+function timeAgo(isoDate) {
+  if (!isoDate) return null
+  const diff = Date.now() - new Date(isoDate).getTime()
+  const mins = Math.floor(diff / 60000)
+  if (mins < 1) return 'just now'
+  if (mins < 60) return `${mins}m ago`
+  const hrs = Math.floor(mins / 60)
+  if (hrs < 24) return `${hrs}h ago`
+  const days = Math.floor(hrs / 24)
+  return `${days} day${days !== 1 ? 's' : ''} ago`
+}
+
 const STATUS_OPTIONS = ['backlog', 'todo', 'in-progress', 'review', 'done', 'blocked']
 const PRIORITY_OPTIONS = ['low', 'medium', 'high', 'critical']
 
@@ -46,6 +58,7 @@ export default function TaskModal() {
   const { state, dispatch } = useApp()
   const { mode, data } = state.modal
   const isEdit = mode === 'edit'
+  const [closing, setClosing] = useState(false)
 
   const [form, setForm] = useState({
     title: '',
@@ -82,7 +95,15 @@ export default function TaskModal() {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
-  const close = () => dispatch({ type: 'CLOSE_MODAL' })
+  const close = () => {
+    setClosing(true)
+  }
+
+  const handleAnimationEnd = (e) => {
+    if (closing && e.animationName === 'slideOut') {
+      dispatch({ type: 'CLOSE_MODAL' })
+    }
+  }
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
 
   const handleSave = () => {
@@ -111,10 +132,15 @@ export default function TaskModal() {
 
   return (
     <>
-      <div className="modal-overlay" onClick={close} />
-      <div className="task-drawer">
+      <div className={`modal-overlay${closing ? ' modal-overlay--closing' : ''}`} onClick={close} />
+      <div className={`task-drawer${closing ? ' task-drawer--closing' : ''}`} onAnimationEnd={handleAnimationEnd}>
         <div className="drawer-header">
-          <span className="drawer-title">{isEdit ? 'Edit Task' : 'New Task'}</span>
+          <div>
+            <span className="drawer-title">{isEdit ? 'Edit Task' : 'New Task'}</span>
+            {isEdit && data?.updated_at && (
+              <span className="drawer-updated">Last updated {timeAgo(data.updated_at)}</span>
+            )}
+          </div>
           <button className="drawer-close" onClick={close}><X size={18} /></button>
         </div>
 

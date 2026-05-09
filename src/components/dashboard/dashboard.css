@@ -1,0 +1,440 @@
+.dashboard {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100%;
+}
+
+/* ── Header ── */
+.db-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.db-greeting {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.db-date {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Stat Cards ── */
+.db-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.db-stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.15s;
+}
+
+.db-stat-card:hover {
+  border-color: var(--accent);
+}
+
+.db-stat-card--danger  { border-left: 3px solid var(--priority-high); }
+.db-stat-card--success { border-left: 3px solid var(--accent); }
+.db-stat-card--warn    { border-left: 3px solid var(--tag-amber-text); }
+
+.db-stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.db-stat-card--danger  .db-stat-icon { background: var(--tag-red-bg);   color: var(--priority-high); }
+.db-stat-card--success .db-stat-icon { background: var(--tag-green-bg); color: var(--accent-light); }
+.db-stat-card--warn    .db-stat-icon { background: var(--tag-amber-bg); color: var(--tag-amber-text); }
+
+.db-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.db-stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.db-stat-card--danger  .db-stat-value { color: var(--priority-high); }
+.db-stat-card--success .db-stat-value { color: var(--accent-light); }
+.db-stat-card--warn    .db-stat-value { color: var(--tag-amber-text); }
+
+.db-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.db-stat-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ── Main Grid ── */
+.db-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: start;
+  flex: 1;
+}
+
+.db-col-left,
+.db-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Section ── */
+.db-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.db-section--danger {
+  border-top: 2px solid var(--priority-high);
+}
+
+.db-section-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.db-section--danger .db-section-header {
+  color: var(--priority-high);
+}
+
+.db-section-count {
+  margin-left: auto;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+
+.db-section--danger .db-section-count {
+  background: var(--tag-red-bg);
+  color: var(--priority-high);
+}
+
+.db-section-empty {
+  padding: 20px 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.db-section-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Task Row ── */
+.db-task-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+  gap: 12px;
+}
+
+.db-task-row:last-child {
+  border-bottom: none;
+}
+
+.db-task-row:hover {
+  background: var(--bg-elevated);
+}
+
+.db-task-row:hover .db-task-chevron {
+  opacity: 1;
+}
+
+.db-task-row-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+  min-width: 0;
+}
+
+.db-task-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.db-task-title {
+  font-size: 13px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-task-milestone {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.db-task-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.db-task-due {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.db-task-due--overdue {
+  color: var(--priority-high);
+  font-weight: 600;
+}
+
+.db-task-chevron {
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+/* ── Milestone Health ── */
+.db-milestone-row {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.db-milestone-row:last-child {
+  border-bottom: none;
+}
+
+.db-milestone-row:hover {
+  background: var(--bg-elevated);
+}
+
+.db-milestone-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.db-milestone-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.db-milestone-title {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-milestone-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.db-milestone-project {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.db-milestone-pct {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 34px;
+  text-align: right;
+}
+
+.db-milestone-bar-track {
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.db-milestone-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.db-milestone-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.db-milestone-foot span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Project Cards ── */
+.db-project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.db-project-card {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.12s;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border-bottom: 1px solid var(--border);
+}
+
+.db-project-card:last-child {
+  border-bottom: none;
+}
+
+.db-project-card:hover {
+  background: var(--bg-elevated);
+}
+
+.db-project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.db-project-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.db-project-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.db-project-overdue-badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--tag-red-bg);
+  color: var(--priority-high);
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.db-project-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.db-project-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.db-project-bar-track {
+  height: 3px;
+  background: var(--bg-elevated);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.db-project-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  opacity: 0.8;
+  transition: width 0.4s ease;
+}
+
+/* ── Responsive: collapse to single col on narrow main areas ── */
+@media (max-width: 900px) {
+  .db-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .db-grid {
+    grid-template-columns: 1fr;
+  }
+}
